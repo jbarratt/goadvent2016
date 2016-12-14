@@ -1,0 +1,31 @@
+Generators (RTGs) paired with microchips
+
+- if a chip is in an area with an RTG
+- and a chip is not powered
+- the chip will be fried
+
+elevator moves between 4 floors
+(yourself) + (2) {RGG, microchip}
+Needs to contain at least 1 rtg or chip
+stops on each floor to recharge; this fries any powered down microchips on that floor
+
+Essentially I have the world state
+At every step I can itemize all the possibilities
+
+Generate a set of valid options:
+  foreach single item or pair of items on this floor
+    foreach destination floor
+      it's a valid option if (no chips fry when I leave) & (no chips fry when I arrive)
+
+Test each one of the valid options
+
+So one key is to model the world such that it's easy to pick what needs to be moved
+It must be also easy to model the whole state
+So if we define a method to tell how far a given state is from the solution
+that will give a metric to try first.
+
+So esentially
+  - at each state
+    - define all possible next states
+    - filter out any invalid states
+    - sort states by closeness to solution
